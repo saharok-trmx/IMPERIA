@@ -1,0 +1,657 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ИМПЕРИЯ — Развлекательный комплекс в Кемерово | Ресторан, Караоке, Ночной клуб, Банкеты</title>
+    <meta name="description" content="Развлекательный комплекс «ИМПЕРИЯ» в Кемерово (Притомская набережная, 7): панорамный ресторан, караоке-холл AST-250, ночной клуб, VIP-ложи и банкеты до 200 гостей. Бронь столов онлайн — ответим за 15 минут." />
+    <link rel="canonical" href="https://imperiakem.ru/" />
+
+    <!-- Open Graph / Превью для Telegram, ВК и WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:site_name" content="Развлекательный комплекс ИМПЕРИЯ" />
+    <meta property="og:title" content="ИМПЕРИЯ — Ресторан, Караоке и Ночной клуб в Кемерово" />
+    <meta property="og:description" content="Четыре пространства под одной крышей на Притомской набережной, 7. Интерактивная схема столов, афиша выходных и расчёт банкетов." />
+    <meta property="og:url" content="https://imperiakem.ru/" />
+    <meta property="og:image" content="https://imperiakem.ru/assets/og-preview-imperia.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Google Analytics (замените G-XXXXXXXXXX на ваш идентификатор потока) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
+    <!-- Микроразметка Schema.org для поисковиков (Яндекс / Google) -->
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "EntertainmentBusiness",
+              "name": "Развлекательный комплекс «ИМПЕРИЯ»",
+              "image": "https://imperiakem.ru/assets/og-preview-imperia.jpg",
+              "telephone": "+7 (3842) 63-05-05",
+              "priceRange": "₽₽₽",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Притомская набережная, 7",
+                "addressLocality": "Кемерово",
+                "addressRegion": "Кемеровская область",
+                "postalCode": "650000",
+                "addressCountry": "RU"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 55.3578,
+                "longitude": 86.0854
+              },
+              "openingHoursSpecification": {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+                "opens": "18:00",
+                "closes": "06:00"
+              }
+            },
+            {
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "Какой депозит и стоимость входа в караоке и ночной клуб?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "С воскресенья по четверг вход и исполнение песен в караоке без депозита. В пятницу и субботу депозит стола составляет от 2 000 до 2 500 ₽ на гостя и полностью расходуется на меню и бар."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Можно ли принести свой алкоголь на банкет или день рождения?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Да, при заказе банкетного меню от 45 000 ₽ мы разрешаем свой алкоголь без пробкового сбора."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- ВСТУПИТЕЛЬНАЯ АНИМАЦИЯ С ТОЧНЫМ ЛОГОТИПОМ ИМПЕРИЯ -->
+    <div class="preloader" id="preloader" aria-hidden="false">
+        <canvas id="preloaderCanvas"></canvas>
+        <div class="preloader-vignette"></div>
+        <div class="preloader-center">
+            <svg class="imperia-hero-logo" viewBox="0 0 680 155" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Логотип развлекательного комплекса Империя">
+                <defs>
+                    <linearGradient id="goldStrokeGrad" x1="0" y1="0" x2="680" y2="155" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#F6E5C8" />
+                        <stop offset="45%" stop-color="#D9A45B" />
+                        <stop offset="75%" stop-color="#FFF2DC" />
+                        <stop offset="100%" stop-color="#B98038" />
+                    </linearGradient>
+                </defs>
+                <g stroke="url(#goldStrokeGrad)" stroke-width="5.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path class="logo-draw crown-path-1" d="M 18 48 L 28 118 L 76 118 L 122 68 L 86 24 L 54 62 L 80 86" />
+                    <path class="logo-draw crown-path-2" d="M 18 48 L 58 84 L 40 104 L 84 104 L 154 48 L 144 118 L 106 118 L 106 96" />
+                </g>
+                <text x="192" y="114" class="imperia-wordmark" fill="url(#goldStrokeGrad)">ИМПЕРИЯ</text>
+            </svg>
+            <div class="preloader-flare"></div>
+            <p class="preloader-subtitle">РАЗВЛЕКАТЕЛЬНЫЙ КОМПЛЕКС · КЕМЕРОВО</p>
+        </div>
+        <button class="skip-intro-btn" id="skipIntroBtn" type="button">Пропустить интро</button>
+    </div>
+
+    <!-- ШАПКА САЙТА -->
+    <header class="site-header" id="siteHeader">
+        <div class="container header-inner">
+            <a href="#top" class="brand-link" aria-label="ИМПЕРИЯ — На главную">
+                <svg class="brand-logo-svg" viewBox="0 0 560 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g stroke="#F4EFEA" stroke-width="4.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M 10 34 L 18 94 L 60 94 L 98 52 L 68 14 L 40 46 L 62 66" />
+                        <path d="M 10 34 L 44 65 L 28 82 L 66 82 L 126 34 L 118 94 L 86 94 L 86 76" />
+                    </g>
+                    <text x="152" y="90" class="brand-wordmark">ИМПЕРИЯ</text>
+                </svg>
+            </a>
+
+            <nav class="main-nav" id="mainNav" aria-label="Основная навигация">
+                <a href="#spaces">Залы</a>
+                <a href="#events">Афиша</a>
+                <a href="#menu">Меню</a>
+                <a href="#hall-map">Схема столов</a>
+                <a href="#banquets">Банкеты</a>
+                <a href="#cases">Кейсы</a>
+                <a href="#faq">Вопросы</a>
+                <a href="#contacts">Как добраться</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="btn-ghost btn-sm" id="replayIntroBtn" type="button">Интро</button>
+                <a href="#hall-map" class="btn-primary btn-sm">Оставить заявку</a>
+                <button class="burger-btn" id="burgerBtn" type="button" aria-label="Открыть меню">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ХЛЕБНЫЕ КРОШКИ -->
+    <div class="breadcrumbs-bar">
+        <div class="container">
+            <nav aria-label="Хлебные крошки" class="breadcrumbs">
+                <a href="#top">Главная</a>
+                <span>/</span>
+                <a href="#spaces">Кемерово · Притомская наб., 7</a>
+                <span>/</span>
+                <strong id="breadcrumbCurrent">Ресторан, караоке и ночной клуб «ИМПЕРИЯ»</strong>
+            </nav>
+        </div>
+    </div>
+
+    <!-- ОСНОВНОЙ КОНТЕНТ -->
+    <main id="top">
+        <!-- 1. ПЕРВЫЙ ЭКРАН С ПОНЯТНЫМИ КНОПКАМИ ЗАЯВКИ И ГАРАНТИЕЙ ОТВЕТА -->
+        <section class="hero-section">
+            <div class="hero-bg-overlay"></div>
+            <div class="container hero-grid">
+                <div class="hero-content reveal">
+                    <div class="eyebrow-badge">
+                        <span class="pulse-dot"></span>
+                        <span>Кемерово · Притомская набережная, 7 · Отвечаем на заявки до 2 часов (обычно за 15 мин)</span>
+                    </div>
+
+                    <h1 class="hero-title">
+                        Главный комплекс отдыха:<br />
+                        <span class="text-crimson">ресторан, караоке</span> и ночной клуб
+                    </h1>
+
+                    <p class="hero-lead">
+                        Проведите вечер в одном из четырёх пространств «Империи»: от ужина у открытого очага и <a href="#menu" class="inline-link">авторского меню</a> до <a href="#events" class="inline-link">ночных шоу-программ</a> и <a href="#banquets" class="inline-link">банкетов под ключ</a>.
+                    </p>
+
+                    <div class="hero-cta-row">
+                        <a href="#hall-map" class="btn-primary">Забронировать стол онлайн</a>
+                        <a href="#banquets" class="btn-outline">Рассчитать банкет за 1 минуту</a>
+                    </div>
+
+                    <div class="hero-metrics">
+                        <div class="metric-item">
+                            <strong data-target="4">0</strong>
+                            <span>формата отдыха в одном здании</span>
+                        </div>
+                        <div class="metric-item">
+                            <strong data-target="320">0</strong>
+                            <span>посадочных мест и VIP-лож</span>
+                        </div>
+                        <div class="metric-item">
+                            <strong>&lt; 2 часов</strong>
+                            <span>гарантия ответа менеджера</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-card-stack reveal">
+                    <div class="glass-panel spotlight-card hero-feature-card">
+                        <div class="card-top-meta">
+                            <span class="tag-crimson">Быстрая бронь</span>
+                            <span class="meta-muted">Без предоплаты в будни</span>
+                        </div>
+                        <h3>IMPERIA WEEKEND &amp; VIP-ЛОЖИ</h3>
+                        <p>Выберите конкретный стол на <a href="#hall-map" class="inline-link">интерактивной схеме</a> или оставьте заявку — персональный хостес перезвонит и закрепит посадку.</p>
+                        <div class="hero-mini-specs">
+                            <div>
+                                <small>Депозит уикенда</small>
+                                <span>от 2 500 ₽ / гость</span>
+                            </div>
+                            <div>
+                                <small>Время ответа</small>
+                                <span>в течение 15–120 мин</span>
+                            </div>
+                        </div>
+                        <button class="btn-primary w-full" type="button" data-open-booking="VIP-ложа на ближайшие выходные">Оставить заявку на бронь</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. ЗАЛЫ И ФОРМАТЫ -->
+        <section class="section" id="spaces">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="section-kicker">Инфраструктура комплекса</span>
+                    <h2 class="section-title">Четыре пространства под одной крышей</h2>
+                    <p class="section-desc">Изучите форматы, выберите подходящий зал и сразу <a href="#hall-map" class="inline-link">закрепите стол на схеме</a>.</p>
+                </div>
+                <div class="spaces-grid" id="spacesGrid"></div>
+            </div>
+        </section>
+
+        <!-- 3. АФИША -->
+        <section class="section section-dark-alt" id="events">
+            <div class="container">
+                <div class="section-head-row reveal">
+                    <div>
+                        <span class="section-kicker">Календарь событий</span>
+                        <h2 class="section-title">Афиша вечеринок и шоу-программ</h2>
+                    </div>
+                    <div class="filter-pills" id="eventFilters">
+                        <button class="pill active" data-event-filter="all" type="button">Все события</button>
+                        <button class="pill" data-event-filter="club" type="button">Ночной клуб</button>
+                        <button class="pill" data-event-filter="karaoke" type="button">Караоке-баттлы</button>
+                        <button class="pill" data-event-filter="gastro" type="button">Гастро-ужины</button>
+                    </div>
+                </div>
+                <div class="events-grid" id="eventsGrid"></div>
+            </div>
+        </section>
+
+        <!-- 4. МЕНЮ И БАР -->
+        <section class="section" id="menu">
+            <div class="container">
+                <div class="section-head-row reveal">
+                    <div>
+                        <span class="section-kicker">Кухня и миксология</span>
+                        <h2 class="section-title">Меню ресторана и барная карта</h2>
+                    </div>
+                    <div class="filter-pills" id="menuFilters"></div>
+                </div>
+                <div class="menu-grid" id="menuGrid"></div>
+            </div>
+        </section>
+
+        <!-- 5. КЕЙСЫ МЕРОПРИЯТИЙ -->
+        <section class="section section-dark-alt" id="cases">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="section-kicker">Портфолио событий</span>
+                    <h2 class="section-title">Проведённые кейсы и мероприятия</h2>
+                    <p class="section-desc">Реальные форматы праздников, которые наша команда организовала под ключ в стенах «Империи».</p>
+                </div>
+                <div class="cases-grid" id="casesGrid"></div>
+            </div>
+        </section>
+
+        <!-- 6. КОМАНДА КОМПЛЕКСА (С ПОДПИСЯМИ К ФОТО И ALT) -->
+        <section class="section" id="team">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="section-kicker">Люди «Империи»</span>
+                    <h2 class="section-title">Команда, которая отвечает за ваш вечер</h2>
+                    <p class="section-desc">Знакомьтесь с руководителями направлений — от кухни и бара до звука и банкетного сервиса.</p>
+                </div>
+                <div class="team-grid" id="teamGrid"></div>
+            </div>
+        </section>
+
+        <!-- 7. ИНТЕРАКТИВНАЯ СХЕМА ЗАЛА И ОНЛАЙН-БРОНЬ -->
+        <section class="section section-dark-alt" id="hall-map">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="section-kicker">Интерактивный план</span>
+                    <h2 class="section-title">Выберите стол на схеме комплекса</h2>
+                    <p class="section-desc">Нажмите на свободный стол, заполните контакты — мы перезвоним и подтвердим бронь максимум в течение 2 часов.</p>
+                </div>
+
+                <div class="hall-layout-wrapper reveal">
+                    <div class="glass-panel hall-map-box">
+                        <div class="hall-legend">
+                            <span><i class="dot free"></i> Свободен</span>
+                            <span><i class="dot selected"></i> Выбран вами</span>
+                            <span><i class="dot busy"></i> Забронирован</span>
+                        </div>
+
+                        <svg class="hall-svg" id="hallSvg" viewBox="0 0 820 460" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Интерактивная схема столов развлекательного комплекса Империя">
+                            <rect x="14" y="14" width="792" height="432" rx="18" fill="#12070A" stroke="rgba(217,164,91,0.28)" stroke-width="1.5" />
+                            <path d="M 250 14 L 570 14 L 540 74 L 280 74 Z" fill="rgba(200,29,50,0.22)" stroke="#C81D32" stroke-width="1.5" />
+                            <text x="410" y="48" text-anchor="middle" fill="#F4EFEA" font-size="13" letter-spacing="3">СЦЕНА · DJ &amp; КАРАОКЕ-ЭКРАН</text>
+                            <rect x="275" y="105" width="270" height="175" rx="16" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.12)" stroke-dasharray="6 6" />
+                            <text x="410" y="196" text-anchor="middle" fill="rgba(244,239,234,0.38)" font-size="12" letter-spacing="4">ТАНЦПОЛ</text>
+                            <rect x="230" y="365" width="360" height="56" rx="12" fill="rgba(217,164,91,0.12)" stroke="#D9A45B" stroke-width="1.2" />
+                            <text x="410" y="398" text-anchor="middle" fill="#D9A45B" font-size="12" letter-spacing="3">КОНТАКТНЫЙ БАР И ЛАУНЖ</text>
+                            <text x="125" y="104" text-anchor="middle" fill="#D9A45B" font-size="11" letter-spacing="2">VIP-ЛОЖИ (ЛЕВО)</text>
+                            <text x="695" y="104" text-anchor="middle" fill="#D9A45B" font-size="11" letter-spacing="2">РЕСТОРАННАЯ ЗОНА</text>
+                            <g id="hallTablesGroup"></g>
+                        </svg>
+                    </div>
+
+                    <form class="glass-panel booking-form" id="bookingForm">
+                        <div class="sla-badge">Гарантия ответа: в течение 15 мин — 2 часов</div>
+                        <h3>Заявка на бронирование</h3>
+                        <div class="selected-table-banner" id="selectedTableBanner">
+                            Выбран стол: <strong>Не выбран (нажмите на схеме)</strong>
+                        </div>
+
+                        <div class="form-row">
+                            <label>
+                                <span>Ваше имя *</span>
+                                <input type="text" name="guestName" placeholder="Александр" required />
+                            </label>
+                            <label>
+                                <span>Телефон *</span>
+                                <input type="tel" name="guestPhone" placeholder="+7 (___) ___-__-__" required />
+                            </label>
+                        </div>
+
+                        <div class="form-row">
+                            <label>
+                                <span>Дата визита *</span>
+                                <input type="date" name="visitDate" required />
+                            </label>
+                            <label>
+                                <span>Время *</span>
+                                <input type="time" name="visitTime" value="21:00" required />
+                            </label>
+                        </div>
+
+                        <div class="form-row">
+                            <label>
+                                <span>Количество гостей</span>
+                                <input type="number" name="guestsCount" min="1" max="20" value="4" required />
+                            </label>
+                            <label>
+                                <span>Формат зала</span>
+                                <select name="hallZone" id="hallZoneSelect">
+                                    <option value="Ресторанный зал">Ресторанный зал</option>
+                                    <option value="Караоке-холл">Караоке-холл</option>
+                                    <option value="Ночной клуб / Танцпол">Ночной клуб / Танцпол</option>
+                                    <option value="VIP-ложа">VIP-ложа</option>
+                                </select>
+                            </label>
+                        </div>
+
+                        <label>
+                            <span>Комментарий или предзаказ блюд</span>
+                            <textarea name="comment" id="bookingComment" rows="2" placeholder="Пожелания по посадке, повод или блюда к подаче"></textarea>
+                        </label>
+
+                        <label class="privacy-check">
+                            <input type="checkbox" required checked />
+                            <span>Согласен с <a href="#privacy" class="inline-link" data-open-page="privacy">политикой конфиденциальности</a> и обработкой персональных данных</span>
+                        </label>
+
+                        <button type="submit" class="btn-primary w-full">Отправить заявку на бронь</button>
+                        <p class="form-note">Администратор свяжется с вами в течение 2 часов (в рабочее время — за 15 минут).</p>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. БАНКЕТНЫЙ КАЛЬКУЛЯТОР -->
+        <section class="section" id="banquets">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="section-kicker">Мероприятия под ключ</span>
+                    <h2 class="section-title">Банкеты, свадьбы и корпоративы</h2>
+                    <p class="section-desc">Посмотрите <a href="#cases" class="inline-link">наши кейсы</a> и рассчитайте смету вашего события прямо сейчас.</p>
+                </div>
+
+                <div class="banquet-grid reveal">
+                    <div class="glass-panel spotlight-card banquet-controls">
+                        <div class="control-block">
+                            <div class="control-label-row">
+                                <span>Количество персон</span>
+                                <strong id="banquetGuestsVal">35 гостей</strong>
+                            </div>
+                            <input type="range" id="banquetGuestsRange" min="10" max="200" step="5" value="35" />
+                        </div>
+
+                        <div class="control-block">
+                            <span class="control-label">Формат меню на персону</span>
+                            <div class="tier-selector" id="banquetTierSelector">
+                                <button type="button" class="tier-btn active" data-price="3200">
+                                    <strong>Стандарт</strong>
+                                    <span>3 200 ₽ / чел</span>
+                                </button>
+                                <button type="button" class="tier-btn" data-price="4500">
+                                    <strong>Премиум</strong>
+                                    <span>4 500 ₽ / чел</span>
+                                </button>
+                                <button type="button" class="tier-btn" data-price="6000">
+                                    <strong>Императорский</strong>
+                                    <span>6 000 ₽ / чел</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="control-block">
+                            <span class="control-label">Дополнительные опции</span>
+                            <div class="addons-list">
+                                <label class="addon-check">
+                                    <input type="checkbox" class="banquet-addon" value="15000" checked />
+                                    <span>Ведущий и DJ-сет комплекса (+15 000 ₽)</span>
+                                </label>
+                                <label class="addon-check">
+                                    <input type="checkbox" class="banquet-addon" value="12000" />
+                                    <span>Welcome-зона с пирамидой игристого и канапе (+12 000 ₽)</span>
+                                </label>
+                                <label class="addon-check">
+                                    <input type="checkbox" class="banquet-addon" value="18000" />
+                                    <span>Закрытие VIP-зала под ключ без посторонних (+18 000 ₽)</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel banquet-summary">
+                        <span class="tag-gold">Предварительный расчёт</span>
+                        <h3>Смета вашего события</h3>
+                        <div class="summary-rows">
+                            <div><span>Банкетное меню:</span><strong id="sumMenuCost">112 000 ₽</strong></div>
+                            <div><span>Доп. опции и шоу:</span><strong id="sumAddonsCost">15 000 ₽</strong></div>
+                            <div><span>Аренда зала и звук:</span><strong>0 ₽ (включено)</strong></div>
+                        </div>
+                        <div class="summary-total">
+                            <span>Итого ориентировочно:</span>
+                            <strong id="sumTotalCost">127 000 ₽</strong>
+                        </div>
+                        <p class="summary-hint">Свой алкоголь без пробкового сбора при заказе от 45 000 ₽. Ответим по дате в течение 2 часов.</p>
+                        <button type="button" class="btn-primary w-full" id="bookBanquetBtn">Запросить банкетное меню и бронь</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. НАСТОЯЩИЕ ОТЗЫВЫ ГОСТЕЙ -->
+        <section class="section section-dark-alt" id="reviews">
+            <div class="container">
+                <div class="section-head-row reveal">
+                    <div>
+                        <span class="section-kicker">Репутация в городе</span>
+                        <h2 class="section-title">Настоящие отзывы гостей комплекса</h2>
+                    </div>
+                    <div class="rating-pill">
+                        <strong>4.9 / 5.0</strong>
+                        <span>на основе отзывов Яндекс Карт и 2ГИС</span>
+                    </div>
+                </div>
+                <div class="reviews-grid" id="reviewsGrid"></div>
+            </div>
+        </section>
+
+        <!-- 10. 5 ЧАСТЫХ ВОПРОСОВ (FAQ) -->
+        <section class="section" id="faq">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="section-kicker">Полезно знать</span>
+                    <h2 class="section-title">5 частых вопросов перед визитом</h2>
+                </div>
+                <div class="faq-list reveal" id="faqList"></div>
+            </div>
+        </section>
+
+        <!-- 11. КАРТА И КАК ДОБРАТЬСЯ -->
+        <section class="section section-dark-alt" id="contacts">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="section-kicker">Локация и маршрут</span>
+                    <h2 class="section-title">Карта и как добраться до комплекса</h2>
+                </div>
+
+                <div class="route-grid reveal">
+                    <div class="glass-panel route-info">
+                        <h3>г. Кемерово, Притомская набережная, 7</h3>
+                        <ul class="route-steps">
+                            <li>
+                                <strong>На автомобиле:</strong>
+                                <span>Заезд с ул. Весенней или Советского проспекта в сторону набережной реки Томь. Бесплатная охраняемая парковка для гостей прямо перед главным входом.</span>
+                            </li>
+                            <li>
+                                <strong>На общественном транспорте:</strong>
+                                <span>Остановка «Драмтеатр» или «Притомская набережная» — 4 минуты пешком вдоль прогулочной аллеи.</span>
+                            </li>
+                            <li>
+                                <strong>Ориентир и вход:</strong>
+                                <span>1 этаж, центральная входная группа с фирменной вывеской и короной «ИМПЕРИЯ».</span>
+                            </li>
+                            <li>
+                                <strong>Связь и резерв:</strong>
+                                <span><a href="tel:+73842630505" class="inline-link">+7 (3842) 63-05-05</a> · Ежедневно 18:00 – 06:00.</span>
+                            </li>
+                        </ul>
+                        <div class="hero-cta-row" style="margin-top: 20px; margin-bottom: 0;">
+                            <a href="https://yandex.ru/maps/?text=Кемерово%2C%20Притомская%20набережная%2C%207" target="_blank" rel="noopener" class="btn-primary btn-sm">Открыть маршрут в Яндекс Картах</a>
+                            <a href="https://2gis.ru/kemerovo/search/Притомская%20набережная%2C%207" target="_blank" rel="noopener" class="btn-outline btn-sm">Построить в 2ГИС</a>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel map-embed-box">
+                        <iframe title="Интерактивная карта проезда к комплексу Империя, Кемерово, Притомская набережная, 7"
+                                src="https://yandex.ru/map-widget/v1/?ll=86.085400%2C55.357800&z=16&pt=86.085400,55.357800,pm2rdm"
+                                loading="lazy"
+                                allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- СТРАНИЦА «СПАСИБО ПОСЛЕ ЗАЯВКИ» (ОТКРЫВАЕТСЯ ПОСЛЕ ОТПРАВКИ ФОРМЫ ИЛИ ПО ССЫЛКЕ #thanks) -->
+    <section class="utility-overlay" id="thanksPage" hidden aria-labelledby="thanksHeading">
+        <div class="container utility-center">
+            <div class="glass-panel utility-card">
+                <div class="modal-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#D9A45B" stroke-width="2">
+                        <path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <span class="tag-gold">Заявка зарегистрирована</span>
+                <h2 id="thanksHeading" style="margin-top: 14px;">Спасибо за обращение в «ИМПЕРИЮ»!</h2>
+                <p id="thanksSummaryText" class="menu-desc">
+                    Ваша заявка передана старшему администратору. Мы гарантированно свяжемся с вами в течение 2 часов (обычно перезваниваем за 15 минут).
+                </p>
+                <div class="thanks-next-steps">
+                    <div><strong>1. Звонок хостес:</strong> подтвердим стол и пожелания по залу.</div>
+                    <div><strong>2. СМС-визитка:</strong> пришлём номер брони и точку входа на набережной.</div>
+                </div>
+                <div class="hero-cta-row" style="justify-content: center; margin-top: 24px; margin-bottom: 0;">
+                    <button type="button" class="btn-primary" data-close-utility>Вернуться на сайт</button>
+                    <a href="#menu" class="btn-outline" data-close-utility>Посмотреть меню и бар</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- СТРАНИЦА «ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ» (#privacy) -->
+    <section class="utility-overlay" id="privacyPage" hidden aria-labelledby="privacyHeading">
+        <div class="container utility-center">
+            <div class="glass-panel utility-card privacy-doc">
+                <span class="tag-gold">Юридическая информация · 152-ФЗ</span>
+                <h2 id="privacyHeading" style="margin-top: 12px;">Политика конфиденциальности</h2>
+                <p class="menu-desc">Настоящая Политика определяет порядок обработки и защиты персональных данных пользователей сайта развлекательного комплекса «ИМПЕРИЯ» (г. Кемерово, Притомская набережная, 7).</p>
+                <div class="privacy-clauses">
+                    <h4>1. Какие данные мы собираем</h4>
+                    <p>Имя, контактный номер телефона, выбранную дату и время визита, количество гостей, а также технические файлы cookie и обезличенную статистику посещений (Google Analytics).</p>
+                    <h4>2. Цели обработки</h4>
+                    <p>Бронирование столов, расчёт стоимости банкетов и обратная связь с гостем в срок не более 2 часов с момента отправки заявки.</p>
+                    <h4>3. Передача третьим лицам и хранение</h4>
+                    <p>Мы не передаём номера телефонов и персональные данные третьим лицам, за исключением случаев, прямо предусмотренных законодательством РФ. Отозвать согласие можно по телефону +7 (3842) 63-05-05.</p>
+                </div>
+                <button type="button" class="btn-primary" data-close-utility>Закрыть и вернуться на сайт</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ФУТЕР -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <svg class="brand-logo-svg footer-logo" viewBox="0 0 560 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g stroke="#D9A45B" stroke-width="4.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M 10 34 L 18 94 L 60 94 L 98 52 L 68 14 L 40 46 L 62 66" />
+                        <path d="M 10 34 L 44 65 L 28 82 L 66 82 L 126 34 L 118 94 L 86 94 L 86 76" />
+                    </g>
+                    <text x="152" y="90" class="brand-wordmark" fill="#F4EFEA">ИМПЕРИЯ</text>
+                </svg>
+                <p class="footer-desc">
+                    Развлекательный комплекс «ИМПЕРИЯ» в Кемерово — объединяем высокий ресторанный сервис, караоке-холл и ночные шоу-программы.
+                </p>
+            </div>
+
+            <div>
+                <h4>Контакты и режим работы</h4>
+                <ul class="footer-list">
+                    <li><strong>Адрес:</strong> г. Кемерово, Притомская набережная, 7</li>
+                    <li><strong>Телефон:</strong> <a href="tel:+73842630505">+7 (3842) 63-05-05</a></li>
+                    <li><strong>Время работы:</strong> Ежедневно с 18:00 до 06:00</li>
+                    <li><strong>Ответ на заявки:</strong> не более 2 часов</li>
+                </ul>
+            </div>
+
+            <div>
+                <h4>Служебные страницы и документы</h4>
+                <ul class="footer-list">
+                    <li><a href="#privacy" data-open-page="privacy">Политика конфиденциальности</a></li>
+                    <li><a href="#thanks" data-open-page="thanks">Страница подтверждения заявки</a></li>
+                    <li><a href="404.html">Страница ошибки 404</a></li>
+                    <li><a href="robots.txt" target="_blank">Файл robots.txt</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <span>© 2026 Развлекательный комплекс «ИМПЕРИЯ». Все права защищены.</span>
+            <span>18+ · Чрезмерное употребление алкоголя вредит вашему здоровью</span>
+        </div>
+    </footer>
+
+    <!-- ЗАКРЕПЛЁННАЯ КНОПКА ЗАЯВКИ НА МОБИЛЬНОМ ТЕЛЕФОНЕ -->
+    <div class="mobile-sticky-cta">
+        <a href="tel:+73842630505" class="btn-outline btn-sm">Позвонить</a>
+        <a href="#hall-map" class="btn-primary btn-sm">Оставить заявку</a>
+    </div>
+
+    <!-- ПЛАВАЮЩАЯ ПАНЕЛЬ ПРЕДЗАКАЗА БЛЮД -->
+    <div class="preorder-bar" id="preorderBar" hidden>
+        <div class="container preorder-inner">
+            <div>
+                <strong id="preorderCount">Выбрано блюд: 0</strong>
+                <span id="preorderSum">Сумма предзаказа: 0 ₽</span>
+            </div>
+            <div class="preorder-actions">
+                <button type="button" class="btn-ghost btn-sm" id="clearPreorderBtn">Очистить</button>
+                <a href="#hall-map" class="btn-primary btn-sm" id="applyPreorderBtn">Прикрепить к столу</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
