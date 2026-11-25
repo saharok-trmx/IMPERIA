@@ -1,7 +1,7 @@
 // ==================== КОНФИГУРАЦИЯ TELEGRAM-БОТА ====================
 const TELEGRAM_CONFIG = {
     BOT_TOKEN: "8946135508:AAHo-oqIX3EGDfQfb46_WuAf0r014Qm54Og", // Получить у @BotFather
-    CHAT_ID: "5795757169"     // Ваш личный ID или ID чата администраторов
+    CHAT_ID: "8629791685"     // Ваш личный ID или ID чата администраторов
 };
 
 document.addEventListener("DOMContentLoaded", () => {
