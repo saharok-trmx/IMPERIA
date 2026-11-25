@@ -1,3 +1,9 @@
+// ==================== КОНФИГУРАЦИЯ TELEGRAM-БОТА ====================
+const TELEGRAM_CONFIG = {
+    BOT_TOKEN: "8946135508:AAHo-oqIX3EGDfQfb46_WuAf0r014Qm54Og", // Получить у @BotFather
+    CHAT_ID: "5795757169"     // Ваш личный ID или ID чата администраторов
+};
+
 document.addEventListener("DOMContentLoaded", () => {
     initPreloader();
     initVisualEffects();
@@ -268,7 +274,9 @@ document.getElementById("clearPreorderBtn").addEventListener("click", () => {
 });
 
 document.getElementById("applyPreorderBtn").addEventListener("click", () => {
-    document.getElementById("bookingComment").value = `Предзаказ блюд: ${preorderItems.map((i) => i.name).join(", ")}`;
+    const total = preorderItems.reduce((acc, i) => acc + i.price, 0);
+    document.getElementById("bookingComment").value =
+        `Предзаказ блюд (${total.toLocaleString("ru-RU")} ₽): ${preorderItems.map((i) => i.name).join(", ")}`;
 });
 
 /* ==================== 5. КЕЙСЫ, КОМАНДА, ОТЗЫВЫ И FAQ ==================== */
@@ -430,7 +438,50 @@ function initBanquetCalculator() {
     });
 }
 
-/* ==================== 7. СТРАНИЦЫ «СПАСИБО», «ПОЛИТИКА» И ЗАЯВКИ ==================== */
+/* ==================== 7. ОТПРАВКА ЗАЯВОК В TELEGRAM И СТРАНИЦЫ ==================== */
+async function sendLeadToTelegram(payload) {
+    const { BOT_TOKEN, CHAT_ID } = TELEGRAM_CONFIG;
+
+    // Защита на случай, если токен ещё не подставлен при локальном тесте
+    if (!BOT_TOKEN || BOT_TOKEN === "ВАШ_ТОКЕН_БОТА" || !CHAT_ID || CHAT_ID === "ВАШ_CHAT_ID") {
+        console.warn("Telegram BOT_TOKEN или CHAT_ID не заданы в TELEGRAM_CONFIG. Заявка:", payload);
+        return;
+    }
+
+    const lines = [
+        "<b>Новая заявка с сайта ИМПЕРИЯ</b>",
+        "",
+        `<b>Гость:</b> ${escapeHtml(payload.name)}`,
+        `<b>Телефон:</b> ${escapeHtml(payload.phone)}`,
+        `<b>Зона:</b> ${escapeHtml(payload.zone)}`,
+        `<b>Выбранный стол:</b> ${escapeHtml(payload.table)}`,
+        `<b>Дата и время:</b> ${escapeHtml(payload.date)} в ${escapeHtml(payload.time)}`,
+        `<b>Количество гостей:</b> ${escapeHtml(payload.guests)}`,
+        payload.comment ? `<b>Комментарий / предзаказ:</b> ${escapeHtml(payload.comment)}` : ""
+    ].filter(Boolean);
+
+    const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: lines.join("\n"),
+            parse_mode: "HTML"
+        })
+    });
+
+    if (!response.ok) {
+        throw new Error(`Telegram API error: ${response.status}`);
+    }
+}
+
+function escapeHtml(str) {
+    return String(str || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+}
+
 function initBookingAndUtilityPages() {
     const thanksPage = document.getElementById("thanksPage");
     const privacyPage = document.getElementById("privacyPage");
@@ -477,21 +528,52 @@ function initBookingAndUtilityPages() {
         }
     });
 
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
         e.preventDefault();
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Отправляем заявку...";
+
         const fd = new FormData(form);
-        const name = fd.get("guestName");
-        const zone = fd.get("hallZone");
-        const date = fd.get("visitDate");
-        const time = fd.get("visitTime");
+        const selectedTable = IMPERIA_DATA.tables.find((t) => t.id === selectedTableId);
 
-        if (typeof gtag === "function") {
-            gtag("event", "generate_lead", { event_category: "booking", event_label: zone });
+        const leadData = {
+            name: fd.get("guestName"),
+            phone: fd.get("guestPhone"),
+            zone: fd.get("hallZone"),
+            table: selectedTable ? `${selectedTable.label} (депозит ${selectedTable.deposit} ₽)` : "Не выбран на схеме",
+            date: fd.get("visitDate"),
+            time: fd.get("visitTime"),
+            guests: fd.get("guestsCount"),
+            comment: fd.get("comment")
+        };
+
+        try {
+            await sendLeadToTelegram(leadData);
+
+            if (typeof gtag === "function") {
+                gtag("event", "generate_lead", { event_category: "booking", event_label: leadData.zone });
+            }
+
+            document.getElementById("thanksSummaryText").textContent =
+                `${leadData.name}, мы получили вашу заявку (${leadData.zone}, ${leadData.date} в ${leadData.time}). Администратор перезвонит вам гарантированно в течение 2 часов (обычно за 15 минут).`;
+
+            form.reset();
+            selectedTableId = null;
+            renderHallMap();
+            document.getElementById("selectedTableBanner").innerHTML =
+                `Выбран стол: <strong>Не выбран (нажмите на схеме)</strong>`;
+            preorderItems.length = 0;
+            updatePreorderBar();
+
+            openUtilityPage("thanks");
+        } catch (err) {
+            console.error("Ошибка при отправке заявки:", err);
+            alert("Не удалось отправить заявку автоматически. Пожалуйста, позвоните нам по номеру +7 (3842) 63-05-05.");
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
         }
-
-        document.getElementById("thanksSummaryText").textContent =
-            `${name}, мы получили вашу заявку (${zone}, ${date} в ${time}). Администратор перезвонит вам гарантированно в течение 2 часов (обычно за 15 минут).`;
-
-        openUtilityPage("thanks");
     });
 }
