@@ -1,7 +1,7 @@
 // ==================== КОНФИГУРАЦИЯ TELEGRAM-БОТА ====================
 const TELEGRAM_CONFIG = {
-  BOT_TOKEN: "ВАШ_ТОКЕН_БОТА", // Вставь токен от @BotFather (например: 7123456789:AAF...)
-  CHAT_ID: "ВАШ_CHAT_ID"     // Вставь свой числовой ID (например: 123456789) и нажми /start в боте!
+  BOT_TOKEN: "8946135508:AAHo-oqIX3EGDfQfb46_WuAf0r014Qm54Og", // Вставь токен от @BotFather (например: 7123456789:AAF...)
+  CHAT_ID: "8629791685"     // Вставь свой числовой ID (например: 123456789) и нажми /start в боте!
 };
 
 document.addEventListener("DOMContentLoaded", () => {
